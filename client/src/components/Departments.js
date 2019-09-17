@@ -9,7 +9,7 @@ class Departments extends React.Component {
   componentDidMount() {
     axios.get("/api/departments")
       .then(res => {
-        this.setState({ departments: res.data})
+        this.setState({ departments: res.data })
       })
       .catch(err => {
         console.log(err)
@@ -21,18 +21,18 @@ class Departments extends React.Component {
     // make axios delete request
     axios.delete(`/api/departments/${id}`)
     // update state
-    departs = this.state.departments.filter( department => {
-      if ( department.id !== id )
+    departs = this.state.departments.filter(department => {
+      if (department.id !== id)
         return department
-      this.setState({ departments: departs })
     })
+    this.setState({ departments: departs })
   };
 
   renderDepartments = () => {
     const { departments, } = this.state;
     if (departments.length <= 0)
       return <Header as="h2">No Departments Found</Header>
-    return departments.map( department => (
+    return departments.map(department => (
       <Card key={department.id}>
         <Card.Content>
           <Card.Header>{department.name}</Card.Header>
@@ -53,17 +53,17 @@ class Departments extends React.Component {
   };
 
   render() {
-    return ( 
+    return (
       <div>
 
-      <Header as="h1">Departments</Header>
-      <br />
-      <Button as={Link} to={"/departments/new"} color="black">New</Button>
-      <br />
-      <br />
-      <Card.Group>
-        {this.renderDepartments()}
-      </Card.Group>
+        <Header as="h1">Departments</Header>
+        <br />
+        <Button as={Link} to={"/departments/new"} color="black">New</Button>
+        <br />
+        <br />
+        <Card.Group>
+          {this.renderDepartments()}
+        </Card.Group>
 
       </div>
     );
