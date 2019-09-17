@@ -17,6 +17,7 @@ const App = () => (
         <Route exact path="/departments" component={Departments} />
         <Route exact path="/departments/new" component={DepartmentForm} />
         <Route exact path="/departments/:id" component={DepartmentView} />
+        <Route exact path="/departments/:id/edit" component={DepartmentForm} />
         <Route component={NoMatch} />
       </Switch>
     </Container>
