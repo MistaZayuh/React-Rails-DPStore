@@ -1,12 +1,34 @@
 import React from "react";
 import axios from "axios";
-import { Header, Form, } from "semantic-ui-react";
+// import { Link, } from "react-router-dom";
+import { Header, Form, Button } from "semantic-ui-react";
 
 class DepartmentForm extends React.Component {
   state = { name: "", };
 
+  componentDidMount() {
+    if (this.props.match.params.id ) {
+      axios.get(`/api/departments/${this.props.match.params.id}`) 
+      .then( res => {
+        this.setState({ name: res.data.name })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    };
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
+    if (this.props.match.params.id){
+      axios.put(`/api/departments/${this.props.match.params.id}`, this.state)
+      .then( res => {
+        this.props.history.push("/departments")
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    } else {
     axios.post("/api/departments", this.state )
     .then( res => {
       this.props.history.push("/departments")
@@ -14,7 +36,7 @@ class DepartmentForm extends React.Component {
     .catch(err => {
       console.log(err)
     })
-    this.setState({ name: "", })
+    }
   };
 
   handleChange = (e, {name, value}) => {
@@ -37,7 +59,10 @@ class DepartmentForm extends React.Component {
             onChange={this.handleChange}
             />
           </Form.Group>
+          <Button color="yellow" onClick={this.handleSubmit}>Submit</Button>
         </Form>
+        <br />
+        <Button color="black" onClick={this.props.history.goBack}>Back</Button>
       </div>
     );
   };
