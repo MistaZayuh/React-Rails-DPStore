@@ -16,7 +16,6 @@ class DepartmentView extends React.Component {
     })    
   };
 
-  
 
   render() {
     const { name, } = this.state.department

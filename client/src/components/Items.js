@@ -43,7 +43,7 @@ class Items extends React.Component {
           <Button color="blue" as={Link} to={{pathname: `/departments/${this.props.department_id}/items/${item.id}`, state: {department_id: `${this.props.department_id}`} }}>
             View
           </Button>
-          <Button color="green" as={Link} to={`/departments/${this.props.department_id}/items/${item.id}/edit`}>
+          <Button color="green" as={Link} to={{pathname: `/departments/${this.props.department_id}/items/${item.id}/edit`, state: {department_id: `${this.props.department_id}`} }}>
             Edit
           </Button>
           <Button color="red" onClick={() => this.deleteItem(item.id)}>
@@ -61,7 +61,7 @@ class Items extends React.Component {
 
         <Header as="h2">Items</Header>
         <br />
-        <Button as={Link} to={`/departments/${this.props.department_id}/items/new`} color="black">New Item</Button>
+        <Button as={Link} to={{pathname: `/departments/${this.props.department_id}/items/new`, state: {department_id: `${this.props.department_id}`} }} color="black">New Item</Button>
         <br />
         <br />
         <Card.Group>
