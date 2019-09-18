@@ -6,7 +6,8 @@ import { Header, Card, Button, } from "semantic-ui-react";
 class Items extends React.Component {
   state = { items: [], };
 
-  componentDidMount() {
+  componentDidUpdate() {
+    if (this.state.items.length === 0) {
     axios.get(`/api/departments/${this.props.department_id}/items`)
       .then(res => {
         this.setState({ items: res.data, })
@@ -14,6 +15,7 @@ class Items extends React.Component {
       .catch(err => {
         console.log(err)
       })
+    };
   };
 
   deleteItem = (id) => {
@@ -38,7 +40,7 @@ class Items extends React.Component {
           <Card.Header>{item.name}</Card.Header>
         </Card.Content>
         <Card.Content extra>
-          <Button color="blue" as={Link} to={`/departments/${this.props.department_id}/items/${item.id}`}>
+          <Button color="blue" as={Link} to={{pathname: `/departments/${this.props.department_id}/items/${item.id}`, state: {department_id: `${this.props.department_id}`} }}>
             View
           </Button>
           <Button color="green" as={Link} to={`/departments/${this.props.department_id}/items/${item.id}/edit`}>
@@ -59,7 +61,7 @@ class Items extends React.Component {
 
         <Header as="h2">Items</Header>
         <br />
-        <Button as={Link} to={`/departments/${this.props.department_id}/items/new`} color="black">New</Button>
+        <Button as={Link} to={`/departments/${this.props.department_id}/items/new`} color="black">New Item</Button>
         <br />
         <br />
         <Card.Group>

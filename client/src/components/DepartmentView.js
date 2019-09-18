@@ -4,7 +4,7 @@ import Items from "./Items";
 import { Segment, Header, Button, } from "semantic-ui-react";
 
 class DepartmentView extends React.Component {
-  state = { department: {}, items: [], };
+  state = { department: {}, };
 
   componentDidMount() {
     axios.get(`/api/departments/${this.props.match.params.id}`)
@@ -13,17 +13,7 @@ class DepartmentView extends React.Component {
     })
     .catch(err => {
       console.log(err)
-    })
-    // axios.get(`/api/departments/${this.state.department.id}/items`)
-    // .then(res => {
-    //   debugger
-    //   this.setState({ items: res.data, })
-    // })
-    // .catch(err => {
-    //   debugger
-    //   console.log(err)
-    // })
-    
+    })    
   };
 
   
