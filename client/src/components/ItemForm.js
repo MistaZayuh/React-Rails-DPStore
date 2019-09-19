@@ -7,7 +7,6 @@ class ItemForm extends React.Component {
 
   componentDidMount() {
     if (this.props.match.params.path == "/departments/:id/items/new" ) {
-      debugger
       axios.get(`/api/departments/${this.props.location.state.department_id}/items/${this.props.match.params.id}`) 
       .then( res => {
         this.setState({ name: res.data.name, price: res.data.price })
@@ -15,9 +14,7 @@ class ItemForm extends React.Component {
       .catch(err => {
         console.log(err)
       })
-    } else {
-      this.setState({ name: "", price: "", }) 
-    };
+    }; 
   };
 
   handleSubmit = (e) => {
@@ -25,7 +22,7 @@ class ItemForm extends React.Component {
     if (this.props.match.params.id){
       axios.put(`/api/departments/${this.props.location.state.department_id}/items/${this.props.match.params.id}`, this.state)
       .then( res => {
-        this.props.history.push(`/departments/${this.props.location.state.department_id}/items`)
+        this.props.history.push(`/departments/${this.props.location.state.department_id}`)
       })
       .catch(err => {
         console.log(err)
@@ -33,7 +30,7 @@ class ItemForm extends React.Component {
     } else {
     axios.post(`/departments/${this.props.location.state.department_id}/items`, this.state )
     .then( res => {
-      this.props.history.push(`/departments/${this.props.location.state.department_id}/items`)
+      this.props.history.push(`/departments/${this.props.location.state.department_id}`)
     })
     .catch(err => {
       console.log(err)
@@ -67,7 +64,7 @@ class ItemForm extends React.Component {
             placeholder="Price"
             name="price"
             required
-            value={this.state.name}
+            value={this.state.price}
             onChange={this.handleChange}
             />
           </Form.Group>

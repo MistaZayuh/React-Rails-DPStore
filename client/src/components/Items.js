@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
+import { StyledCard, HeaderText } from "./styles/MainStyles";
 import { Header, Card, Button, } from "semantic-ui-react";
 
 class Items extends React.Component {
@@ -35,7 +36,7 @@ class Items extends React.Component {
     if (items.length <= 0)
       return <Header as="h3">No Items Found</Header>
     return items.map(item => (
-      <Card key={item.id}>
+      <StyledCard key={item.id}>
         <Card.Content>
           <Card.Header>{item.name}</Card.Header>
         </Card.Content>
@@ -50,7 +51,7 @@ class Items extends React.Component {
             Delete
           </Button>
         </Card.Content>
-      </Card>
+      </StyledCard>
     ))
   };
 
@@ -59,7 +60,7 @@ class Items extends React.Component {
     return (
       <div>
 
-        <Header as="h2">Items</Header>
+        <HeaderText>Items</HeaderText>
         <br />
         <Button as={Link} to={{pathname: `/departments/${this.props.department_id}/items/new`, state: {department_id: `${this.props.department_id}`} }} color="black">New Item</Button>
         <br />

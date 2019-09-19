@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
-import { Header, Card, Button, } from "semantic-ui-react";
+import { StyledCard, HeaderText, HeaderBox, } from "./styles/MainStyles";
+import { Header, Card, Button, Segment } from "semantic-ui-react";
 
 class Departments extends React.Component {
   state = { departments: [], };
@@ -33,7 +34,7 @@ class Departments extends React.Component {
     if (departments.length <= 0)
       return <Header as="h2">No Departments Found</Header>
     return departments.map(department => (
-      <Card key={department.id}>
+      <StyledCard key={department.id}>
         <Card.Content>
           <Card.Header>{department.name}</Card.Header>
         </Card.Content>
@@ -48,15 +49,16 @@ class Departments extends React.Component {
             Delete
           </Button>
         </Card.Content>
-      </Card>
+      </StyledCard>
     ))
   };
 
   render() {
     return (
       <div>
-
-        <Header as="h1">Departments</Header>
+        <HeaderBox>
+          <HeaderText>Departments</HeaderText>
+        </HeaderBox>
         <br />
         <Button as={Link} to={"/departments/new"} color="black">New</Button>
         <br />
@@ -69,6 +71,7 @@ class Departments extends React.Component {
     );
   };
 };
+
 
 
 export default Departments;

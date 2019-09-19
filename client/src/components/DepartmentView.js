@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Items from "./Items";
+import { HeaderText, HeaderBox } from "./styles/MainStyles"
 import { Segment, Header, Button, } from "semantic-ui-react";
 
 class DepartmentView extends React.Component {
@@ -16,14 +17,13 @@ class DepartmentView extends React.Component {
     })    
   };
 
-
   render() {
     const { name, } = this.state.department
     return (
       <div>
-        <Segment>
-          <Header as="h1">{ name }</Header>
-        </Segment>
+        <HeaderBox>
+          <HeaderText>{ name }</HeaderText>
+        </HeaderBox>
         <br />
         <br />
         
